@@ -1,4 +1,5 @@
 <ul>
+    <%# for celebrity in celebrities %>
     <% @celebrities.each do |celebrity| %>
         <li><%= celebrity["name"]%> is famous for <%= celebrity["notability"]%></li>
     <% end %>
