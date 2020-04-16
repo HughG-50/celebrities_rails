@@ -43,9 +43,14 @@ class CelebritiesController < ApplicationController
     
     #Remove a celebrity
     def destroy
-        @celebrities = @celebrities.select {|celebrity| celebrity["name"] != params["name"]}
-        render plain: ""
-
+        celebrity_to_delete = {}
+        for celebrity in @celebrities
+            if celebrity["name"] == params["name"]
+                celebrity_to_delete = celebrity
+            end
+        end
+        session[:celebrities] = @celebrities.select {|celebrity| celebrity["name"] != params["name"]}
+        render json: celebrity_to_delete
     end
 
     private
